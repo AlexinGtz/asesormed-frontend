@@ -1,0 +1,35 @@
+.SideDrawer {
+  position: fixed;
+  background-color: #4064b9;
+  padding: 16px 32px;
+  width: 280px;
+  max-width: 70%;
+  left: 0;
+  top: 0;
+  z-index: 200;
+  height: 100%;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-out;
+}
+
+.Open {
+  transform: translateX(0);
+}
+
+.Closed {
+  transform: translateX(-100%);
+}
+
+@media (min-width: 500px) {
+  .SideDrawer {
+    display: none;
+  }
+}
+
+.DrawerLogo {
+  background-color: #4064b9;
+  height: 11%;
+  width: 100px;
+  margin: 16px;
+  border-radius: 50px;
+}

@@ -1,0 +1,22 @@
+.Button {
+  background-color: #4064b9;
+  border: none;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0.5em;
+  margin: 1.5em 1.2em;
+  font-weight: bold;
+  font-size: x-large;
+  border-radius: 5px;
+  width: 20rem;
+  box-shadow: 3px 3px 2px grey;
+}
+
+.Button:hover,
+.Button:active {
+  color: #4064b9;
+  background-color: white;
+  box-shadow: inset 3px 3px 2px grey;
+}

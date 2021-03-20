@@ -1,0 +1,104 @@
+.specialFormContent {
+  background-color: rgba(204, 204, 204, 0.5);
+  align-items: center;
+  width: 100%;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.3em;
+}
+
+.specialFormRectangle {
+  width: 1px;
+  background-color: black;
+  height: 20em;
+  border-radius: 5px;
+  margin: 2em 5em 0 5em;
+}
+
+.specialFormButton {
+  display: block;
+  margin: 1em 0;
+}
+
+.specialFormColumn {
+  width: 45%;
+}
+
+.specialFormContent input:focus {
+  outline: none;
+  background-color: aliceblue;
+  opacity: 0.5;
+}
+
+.specialFormContent input {
+  border-radius: 5px;
+}
+
+.specialFormTitle {
+  text-align: center;
+  color: #4064b9;
+}
+
+.specialFormInput {
+  width: 100%;
+  margin: 1em 0;
+  height: 2em;
+  border: none;
+  font: inherit;
+}
+
+.specialFormInvalid {
+  border: 2px red solid;
+}
+
+.specialFormTextarea {
+  margin: 1em 0;
+  resize: none;
+  width: 100%;
+  font: inherit;
+  border: none;
+  border-radius: 5px;
+}
+
+.specialFormTextarea:focus {
+  outline: none;
+  background-color: aliceblue;
+  opacity: 0.5;
+}
+
+.specialFormDiv {
+  padding: 0.5em;
+  height: 48.5em;
+}
+
+.specialFormDateTime {
+  text-align: center;
+  display: inline-block;
+  width: 100%;
+  margin: 0 0 1em 0;
+}
+
+.specialFormInputDateTime {
+  width: 8.5em;
+  height: 2em;
+  padding: 0 0.5em;
+  margin: 0 0.2em;
+}
+
+.specialFormColumns {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  margin-top: 2em;
+}
+
+@media (min-width: 40rem) {
+  .specialFormContent {
+    margin: auto;
+    width: 50rem;
+    margin-bottom: 5rem;
+    padding: 0 7rem;
+    border-radius: 15px;
+  }
+}

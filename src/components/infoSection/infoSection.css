@@ -1,0 +1,60 @@
+.inforightSection {
+  height: 33%;
+  display: flex;
+  align-items: center;
+  margin: 4em;
+}
+
+.inforightImage {
+  width: 15%;
+  margin-right: 15%;
+}
+
+.inforightParagraph {
+  text-align: right;
+  font-size: large;
+  margin: 1.5em 1.5em;
+  /* padding: 20px; */
+  width: 70%;
+  display: inline-block;
+}
+
+.inforightTitle {
+  margin: 15px 15px;
+  padding: 20px;
+  width: 70%;
+  text-align: right;
+}
+
+.inforightDiv {
+  width: 59%;
+}
+
+.infoleftSection {
+  height: 33%;
+  display: flex;
+  align-items: center;
+  margin: 4em;
+  flex-direction: row-reverse;
+}
+
+.infoleftImage {
+  width: 15%;
+  margin-right: 22%;
+}
+
+.infoleftParagraph {
+  text-align: left;
+  font-size: large;
+  margin: 1.5em 1.5em;
+  /* padding: 20px; */
+  width: 70%;
+  display: inline-block;
+}
+
+.infoleftTitle {
+  margin: 15px 15px;
+  padding: 20px;
+  width: 70%;
+  text-align: left;
+}

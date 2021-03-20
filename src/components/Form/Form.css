@@ -1,0 +1,54 @@
+.formContent {
+  background-color: rgba(204, 204, 204, 0.5);
+
+  /* opacity: 0.2; */
+  align-items: center;
+  width: 100%;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5em;
+}
+
+.formContent input:focus {
+  outline: none;
+  background-color: aliceblue;
+  opacity: 0.5;
+}
+
+.formContent input {
+  border-radius: 5px;
+}
+
+.formTitle {
+  text-align: center;
+  color: #4064b9;
+}
+
+.formInput {
+  width: 70%;
+  margin: 1em 0;
+  height: 2em;
+  border: none;
+}
+
+.formDiv {
+  padding: 0.5em;
+  height: 48.5em;
+}
+
+.form {
+  width: 100%;
+  margin-left: 10em;
+}
+
+@media (min-width: 400px) {
+  .formContent {
+    margin: auto;
+    width: 35rem;
+    height: 28em;
+    margin-bottom: 5rem;
+    padding: 0 7rem;
+    border-radius: 15px;
+  }
+}
