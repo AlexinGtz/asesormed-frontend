@@ -1,0 +1,100 @@
+.profileContent {
+  background-color: rgba(204, 204, 204, 0.5);
+  align-items: center;
+  width: 100%;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5em;
+}
+
+.profileContent input:focus {
+  outline: none;
+  background-color: aliceblue;
+  opacity: 0.5;
+}
+
+.profileTitle {
+  text-align: center;
+  color: #4064b9;
+}
+
+.profileInput {
+  width: 100%;
+  margin: 1em 0;
+  height: 2em;
+  border: none;
+}
+
+.profileDiv {
+  padding: 0.5em;
+  height: 48.5em;
+}
+
+.profileImage {
+  height: 30px;
+  vertical-align: middle;
+  margin-right: 1em;
+}
+
+.profileButton {
+  margin-top: 3em;
+}
+
+.profileData {
+  display: flex;
+  vertical-align: middle;
+  align-items: center;
+}
+
+@media (min-width: 40rem) {
+  .profileContent {
+    margin: auto;
+    width: 35rem;
+    margin-bottom: 5rem;
+    padding: 0 7rem;
+    border-radius: 15px;
+  }
+}
+/*
+
+.profileDiv {
+  background-color: #ccc;
+  align-items: center;
+  text-align: center;
+  width: 50rem;
+  height: 25rem;
+  padding: 0 0.5em;
+  margin-bottom: 5em;
+  border-radius: 15px;
+}
+
+.profileColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.profileButton {
+  margin-top: 3em;
+}
+
+.profileName {
+  color: #4064b9;
+  vertical-align: middle;
+}
+
+.profileImage {
+  height: 30px;
+  vertical-align: middle;
+}
+
+.profileText {
+  vertical-align: middle;
+  display: inline-block;
+  margin-left: 1em;
+}
+
+.profileTitle {
+  text-align: center;
+}
+*/

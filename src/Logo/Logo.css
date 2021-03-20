@@ -5,8 +5,10 @@
 }
 
 .Logo img {
-  height: 100%;
+  height: 80%;
   border-radius: 50px;
+  margin-left: 15px;
+  margin-top: 0.4em;
 }
 
 /*.Logo:hover {

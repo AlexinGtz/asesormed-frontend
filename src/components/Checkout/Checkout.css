@@ -1,0 +1,82 @@
+.checkoutContent {
+  background-color: rgba(204, 204, 204, 0.5);
+  align-items: center;
+  width: 100%;
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5em;
+}
+
+.checkoutContent h2 {
+  margin: 0.5em 0;
+}
+
+.checkoutContent input:focus {
+  outline: none;
+  background-color: aliceblue;
+  opacity: 0.5;
+}
+
+.checkoutTitle {
+  text-align: center;
+  color: #4064b9;
+}
+
+.checkoutAmount {
+  color: black;
+}
+
+.checkoutInput {
+  width: 80%;
+  margin: 1em 0;
+  height: 2em;
+  border: none;
+}
+
+.checkoutDiv {
+  padding: 0.5em;
+  height: 48.5em;
+}
+
+.checkout {
+  width: 100%;
+  margin-left: 10em;
+}
+
+.checkoutCardData {
+  display: flex;
+  flex-direction: row;
+  margin: 0 0 1.5em 0;
+}
+
+.checkoutData {
+  margin: 0.2em 2em;
+}
+
+.checkoutCardData p {
+  text-align: center;
+  color: black;
+  margin: 0.5em 0;
+}
+
+.checkoutDate {
+  width: 12em;
+}
+
+.checkoutButton {
+  width: 15em;
+  font-size: large;
+}
+
+@media (min-width: 400px) {
+  .checkoutContent {
+    margin: auto;
+    width: 30rem;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
+    height: 35em;
+    padding: 0 7rem;
+    border-radius: 15px;
+  }
+}

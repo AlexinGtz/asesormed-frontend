@@ -1,0 +1,18 @@
+.Input{
+    width: 100%;
+  margin: 1em 0;
+  height: 2em;
+  border: none;
+  font: inherit;
+  border-radius: 5px;
+}
+
+.Input:focus{
+    outline: none;
+  background-color: aliceblue;
+  opacity: 0.5;
+}
+
+.InvalidInput{
+    border: 2px red solid;
+}

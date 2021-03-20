@@ -1,43 +1,45 @@
 import React from "react";
 import "./NavigationItems.css";
 import NavigationItem from "./NavigationItem/NavigationItem";
+import { connect } from "react-redux";
 
 const navigationItems = (props) => {
-  const isLoggedIn = true;
-  const userType = 0;
-
-  //TODO: Change links
-
-  const LogIn = isLoggedIn ? null : (
+  //TODO: Si es checkout no renderear nada del menu
+  const LogIn = props.isLoggedIn ? null : (
     <NavigationItem link="/login">Acceder</NavigationItem>
   );
-  const LogOut = !isLoggedIn ? null : (
-    <NavigationItem link="/login">Salir</NavigationItem>
+  const LogOut = !props.isLoggedIn ? null : (
+    <NavigationItem link="/logout">Salir</NavigationItem>
   );
-  const Profile = !isLoggedIn ? null : (
-    <NavigationItem link="/login">Perfil</NavigationItem>
+  const Profile = !props.isLoggedIn ? null : (
+    <NavigationItem link="/profile">Perfil</NavigationItem>
   );
   const AddSeller =
-    userType === 0 ? (
-      <NavigationItem link="/login">Añadir Vendedor</NavigationItem>
+    props.isLoggedIn && props.userType === 0 ? (
+      <NavigationItem link="/addSeller">Añadir Vendedor</NavigationItem>
+    ) : null;
+  const Reports =
+    props.isLoggedIn && props.userType === 0 ? (
+      <NavigationItem link="/reports">Reportes</NavigationItem>
     ) : null;
   const AddDoctor =
-    userType === 2 ? (
-      <NavigationItem link="/login">Añadir Doctor</NavigationItem>
+    props.isLoggedIn && props.userType === 2 ? (
+      <NavigationItem link="/addDoctor">Añadir Doctor</NavigationItem>
     ) : null;
   const AddAppointment =
-    userType === 1 ? (
-      <NavigationItem link="/login">Añadir Cita</NavigationItem>
+    props.isLoggedIn && props.userType === 1 ? (
+      <NavigationItem link="/addAppointment">Añadir Cita</NavigationItem>
     ) : null;
   const SeeAppointments =
-    userType === 1 ? (
-      <NavigationItem link="/login">Ver Citas</NavigationItem>
+    props.isLoggedIn && props.userType === 1 ? (
+      <NavigationItem link="/SeeAppointments">Ver Citas</NavigationItem>
     ) : null;
 
   return (
     <ul className="NavigationItems">
       {LogIn}
       {AddSeller}
+      {Reports}
       {AddDoctor}
       {AddAppointment}
       {SeeAppointments}
@@ -47,4 +49,11 @@ const navigationItems = (props) => {
   );
 };
 
-export default navigationItems;
+const mapStateToProps = (state) => {
+  return {
+    isLoggedIn: state.isLoggedIn,
+    userType: state.userType,
+  };
+};
+
+export default connect(mapStateToProps, null)(navigationItems);

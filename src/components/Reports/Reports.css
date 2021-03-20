@@ -1,0 +1,66 @@
+.reportsContent {
+  background-color: rgba(204, 204, 204, 0.5);
+  align-items: center;
+  width: 100%;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5em;
+  color: black;
+}
+
+.reportsDates {
+  margin: 1em;
+  display: inline;
+}
+
+.reportInput {
+  margin: 1em;
+  width: 10em;
+}
+
+.reportsButton {
+  width: 10rem;
+  font-size: large;
+  margin-top: 0;
+  margin-left: 3.5em;
+}
+
+.reportsReports {
+  overflow-y: scroll;
+  width: 100%;
+  height: 20em;
+}
+
+@media (min-width: 40rem) {
+  .reportsContent {
+    margin: auto;
+    width: 35rem;
+    height: 38.5em;
+    margin-bottom: 11rem;
+    padding: 0 7rem;
+    border-radius: 15px;
+  }
+}
+
+/* width */
+.reportsReports::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.reportsReports::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 15px;
+}
+
+/* Handle */
+.reportsReports::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+.reportsReports::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

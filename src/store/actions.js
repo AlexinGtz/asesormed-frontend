@@ -1,0 +1,5 @@
+export const LOGIN = "LOGIN";
+export const LOGOUT = "LOGOUT";
+export const CHANGE_TOKEN = "CHANGE_TOKEN";
+export const CHANGE_EXPIRE_DATE = "CHANGE_EXPIRE_DATE";
+export const EXPIRATION_HANDLER = "EXPIRATION_HANDLER";

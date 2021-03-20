@@ -1,0 +1,46 @@
+.Footer {
+  height: 4.5em;
+  background-color: rgb(88, 88, 88);
+  display: flex;
+  color: aliceblue;
+  width: 100%;
+}
+
+.creado {
+  flex: 1;
+  vertical-align: bottom;
+  padding-left: 5px;
+  font-size: smaller;
+  vertical-align: bottom;
+}
+
+.contacto {
+  flex: 3;
+  align-items: center;
+  text-align: center;
+}
+
+.empty {
+  flex: 1;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.contactImage {
+  height: 1.1em;
+  margin-right: 1.2em;
+}
+
+.contactText,
+.contactImage {
+  vertical-align: middle;
+}
+
+.contactAnchor {
+  text-decoration: none;
+  color: aquamarine;
+  font-weight: bold;
+}

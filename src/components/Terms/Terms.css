@@ -1,0 +1,39 @@
+.termsTitle {
+  color: black;
+  width: 100%;
+  text-align: center;
+}
+
+.termsButton {
+  margin-left: 3em;
+}
+
+.termsParagraph {
+  width: 80%;
+  height: 20em;
+  padding: 1em 5em;
+  color: black;
+  overflow-y: scroll;
+}
+
+/* width */
+.termsParagraph::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.termsParagraph::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 15px;
+}
+
+/* Handle */
+.termsParagraph::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+.termsParagraph::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

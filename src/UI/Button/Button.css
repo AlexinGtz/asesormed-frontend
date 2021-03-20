@@ -1,24 +1,22 @@
-.Button{
-    background-color: transparent;
-    border: none;
-    color: white;
-    outline: none;
-    cursor: pointer;
-    font: inherit;
-    padding: 10px;
-    margin: 10px;
-    font-weight: bold;
+.Button {
+  background-color: #4064b9;
+  border: none;
+  color: white;
+  outline: none;
+  cursor: pointer;
+  font: inherit;
+  padding: 0.5em;
+  margin: 1.5em 1.2em;
+  font-weight: bold;
+  font-size: x-large;
+  border-radius: 5px;
+  width: 20rem;
+  box-shadow: 3px 3px 2px grey;
 }
 
-.Button:first-of-type{
-    margin-left: 0;
-    padding-left: 0;
-}
-
-.Success{
-    color: chartreuse;
-}
-
-.Danger{
-    color: brown;
+.Button:hover,
+.Button:active {
+  color: #4064b9;
+  background-color: white;
+  box-shadow: inset 3px 3px 2px grey;
 }
