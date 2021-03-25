@@ -49,7 +49,7 @@ const SpecialForm = (props) => {
     };
 
     axios
-      .post("http://localhost:3001/createAppointment", formData)
+      .post("http://" + process.env.hostname + "/createAppointment", formData)
       .then((result) => {
         console.log(result);
       })

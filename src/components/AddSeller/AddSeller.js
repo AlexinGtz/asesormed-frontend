@@ -23,7 +23,7 @@ const addSeller = (props) => {
     console.log(password);
 
     axios
-      .post(" http://localhost:3001/createUser", {
+      .post("http://" + process.env.hostname + "/createUser", {
         name: data["Nombre Completo"],
         phone: data["Telefono"],
         userType: 2,

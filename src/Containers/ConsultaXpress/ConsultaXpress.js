@@ -16,6 +16,7 @@ import Login from "../../components/Login/Login";
 import Checkout from "../../components/Checkout/Checkout";
 import Logout from "../../components/Logout/Logout";
 import checkTimeout from "../../store/authAction";
+import MessageModal from "../../UI/MessageModal/MessageModal";
 
 const ConsultaXpress = (props) => {
   useEffect(() => {
@@ -76,9 +77,28 @@ const ConsultaXpress = (props) => {
 
   return (
     <div className="consultaXpress">
-      <Layout>{routes}</Layout>
+      <Layout>
+        <MessageModal
+          show={props.showMessageModal}
+          messageType={props.messageType}
+          closeModal={props.closeModal}
+        >
+          {props.message}
+        </MessageModal>
+        {routes}
+      </Layout>
     </div>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    message: state.message,
+    showMessageModal: state.showMessageModal,
+    messageType: state.messageType,
+    isAuthenticated: state.token !== null,
+    userType: state.userType,
+  };
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -103,13 +123,9 @@ const mapDispatchToProps = (dispatch) => {
         }
       }
     },
-  };
-};
-
-const mapStateToProps = (state) => {
-  return {
-    isAuthenticated: state.token !== null,
-    userType: state.userType,
+    closeModal: () => {
+      dispatch({ type: actionTypes.CLOSE_MAIN_MODAL });
+    },
   };
 };
 

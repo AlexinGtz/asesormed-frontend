@@ -15,7 +15,12 @@ const SeeAppointments = (props) => {
 
   useEffect(() => {
     axios
-      .get(" http://localhost:3001/getDoctorAppointments/" + props.userID)
+      .get(
+        "http://" +
+          process.env.hostname +
+          "/getDoctorAppointments/" +
+          props.userID
+      )
       .then((response) => {
         console.log(response.data);
         setAppointments(response.data);

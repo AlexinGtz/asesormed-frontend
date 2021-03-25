@@ -1,17 +1,17 @@
 const request = require("request");
 const router = require("express").Router();
 
-router.get("/getProfile/:id") = (req, res, next) => {
+router.get("/getProfile/:id", (req, res, next) => {
   return new Promise((resolve, reject) => {
     request.get(
-      `http://localhost:3001/getUser/${req.params.id}`,
+      `http:// ${process.env.hostname}/getUser/${req.params.id}`,
       (response) => {
         console.log(response);
         resolve(response);
       }
     );
   });
-};
+});
 
 /*
 // /getDoctorAppointments/:doctorId
@@ -33,3 +33,5 @@ updateUser;
 // /createUser
 createUser;
 */
+
+module.exports = router;
