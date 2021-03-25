@@ -26,7 +26,7 @@ const AddDoctor = (props) => {
     console.log(password);
 
     axios
-      .post(" http://localhost:3001/createUser", {
+      .post("http://" + process.env.hostname + "/createUser", {
         name: data["Nombre Completo"],
         phone: data["Teléfono"],
         userType: 1,

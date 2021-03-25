@@ -21,7 +21,7 @@ const Reports = () => {
     console.log(endDate);
 
     axios
-      .post("http://localhost:3001/getReport", {
+      .post("http://" + process.env.hostname + "/getReport", {
         startDate: startDate,
         endDate: endDate,
       })

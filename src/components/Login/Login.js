@@ -39,7 +39,9 @@ const Login = (props) => {
 
   const acceptTerms = () => {
     axios
-      .post("http://localhost:3001/acceptTerms", { id: queryData.id })
+      .post("http://" + process.env.hostname + "/acceptTerms", {
+        id: queryData.id,
+      })
       .then((response) => {
         if (response.status !== 200) {
           console.log("Error accepting terms");
@@ -61,7 +63,7 @@ const Login = (props) => {
     }
 
     axios
-      .post(" http://localhost:3001/login", {
+      .post("http://" + process.env.hostname + "/login", {
         mail: data["Correo Electrónico"],
         password: data["Contraseña"],
       })

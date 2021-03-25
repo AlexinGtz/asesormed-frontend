@@ -7,6 +7,9 @@ const initialState = {
   userType: null,
   token: null,
   expiresIn: null,
+  message: "ERROR RETIREVING DATA",
+  messageType: 1,
+  showMessageModal: true,
 };
 
 const reducer = (state = initialState, action) => {
@@ -43,6 +46,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         token: action.payload.token,
+      };
+    case actionTypes.SET_MESSAGE:
+      return {
+        ...state,
+        message: action.payload.errorMessage,
+        showMessageModal: true,
+        messageType: action.payload.messageType,
+      };
+    case actionTypes.CLOSE_MAIN_MODAL:
+      return {
+        showMessageModal: false,
       };
     default:
       return state;

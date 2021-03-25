@@ -17,7 +17,7 @@ const Checkout = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/getAppointment/" + id)
+      .get("http://" + process.env.hostname + "/getAppointment/" + id)
       .then((response) => {
         setAppointmentData({
           ...appointmentData,

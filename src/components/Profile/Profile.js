@@ -40,7 +40,7 @@ const Profile = (props) => {
     //TODO: Change ID
     console.log(props.userID);
     axios
-      .get("http://localhost:3001/getUser/" + props.userID)
+      .get("http://" + process.env.hostname + "/getUser/" + props.userID)
       .then((response) => {
         setProfileData({
           name: response.data.name,
