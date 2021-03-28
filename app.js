@@ -13,13 +13,6 @@ app.enable("trust proxy");
 
 app.use("/static", express.static("build/static"));
 app.use(bodyParser.json());
-/*app.use(
-  session({
-    resave: "true",
-    saveUninitialized: "true",
-    secret: "not a keyboard cat",
-  })
-);*/
 
 app.use("/api", require("./src/routes/api")); //ensureAuthenticated,
 

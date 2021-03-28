@@ -3,7 +3,6 @@ import React from "react";
 import "./ModalAppointment.css";
 
 const ModalAppointment = (props) => {
-  console.log(props.appointment);
   return (
     <div className="modalAppointment">
       <h1 className="modalAppointmentTitle modalAppointmentColor">

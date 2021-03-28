@@ -9,6 +9,7 @@ const modal = (props) => {
       <Backdrop show={props.show} closed={props.closeModal} />
       <div
         className="Modal"
+        id={props.id}
         style={{
           transform: props.show ? "translateX(0)" : "translateX(100vw)",
           opacity: props.show ? "1" : "0",

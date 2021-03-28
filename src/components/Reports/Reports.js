@@ -1,15 +1,16 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import Button from "../../UI/Button/Button";
 import Report from "../Report/Report";
 import Input from "../Input/Input";
-
+import * as messageTypes from "../../messageTypes";
 import "./Reports.css";
 
 //TODO: Checar que pedo con las fechas
 
-const Reports = () => {
+const Reports = (props) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [reportsArray, setReportsArray] = useState([]);
@@ -17,16 +18,21 @@ const Reports = () => {
 
   const onGenerateReports = (event) => {
     event.preventDefault();
-    console.log(startDate);
-    console.log(endDate);
 
     axios
-      .post("http://" + process.env.hostname + "/getReport", {
-        startDate: startDate,
-        endDate: endDate,
-      })
+      .post(
+        "http://" + messageTypes.CURRENT_ROUTE + "/getReport",
+        {
+          startDate: startDate,
+          endDate: endDate,
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + props.token,
+          },
+        }
+      )
       .then((result) => {
-        console.log(result.data);
         setReportsArray(result.data);
       })
       .catch((err) => console.log(err));
@@ -80,4 +86,10 @@ const Reports = () => {
   );
 };
 
-export default Reports;
+const mapStateToProps = (state) => {
+  return {
+    token: state.token,
+  };
+};
+
+export default connect(mapStateToProps, null)(Reports);

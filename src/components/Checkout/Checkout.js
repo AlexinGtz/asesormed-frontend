@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import Button from "../../UI/Button/Button";
 import Input from "../Input/Input";
 
+import * as messageTypes from "../../messageTypes";
 import "./Checkout.css";
 
 const Checkout = (props) => {
@@ -17,7 +18,7 @@ const Checkout = (props) => {
 
   useEffect(() => {
     axios
-      .get("http://" + process.env.hostname + "/getAppointment/" + id)
+      .get("http://" + messageTypes.CURRENT_ROUTE + "/getAppointment/" + id)
       .then((response) => {
         setAppointmentData({
           ...appointmentData,
@@ -25,7 +26,9 @@ const Checkout = (props) => {
           cost: parseInt(response.data.cost),
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (

@@ -7,16 +7,14 @@ const initialState = {
   userType: null,
   token: null,
   expiresIn: null,
-  message: "ERROR RETIREVING DATA",
-  messageType: 1,
-  showMessageModal: true,
+  message: "",
+  messageType: 0,
+  showMessageModal: false,
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOGIN:
-      console.log(action.payload);
-
       return {
         ...state,
         isLoggedIn: true,
@@ -50,7 +48,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.SET_MESSAGE:
       return {
         ...state,
-        message: action.payload.errorMessage,
+        message: action.payload.message,
         showMessageModal: true,
         messageType: action.payload.messageType,
       };

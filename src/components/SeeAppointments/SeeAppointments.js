@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import Appointment from "../Appointment/Appointment";
 import Modal from "../../UI/Modal/Modal";
 import ModalAppointment from "../ModalAppointment/ModalAppointment";
+import * as messageTypes from "../../messageTypes";
 
 import "./SeeAppointments.css";
 import axios from "axios";
@@ -17,12 +18,16 @@ const SeeAppointments = (props) => {
     axios
       .get(
         "http://" +
-          process.env.hostname +
+          messageTypes.CURRENT_ROUTE +
           "/getDoctorAppointments/" +
-          props.userID
+          props.userID,
+        {
+          headers: {
+            Authorization: "Bearer " + props.token,
+          },
+        }
       )
       .then((response) => {
-        console.log(response.data);
         setAppointments(response.data);
       })
       .catch((err) => console.log(err));
@@ -67,6 +72,7 @@ const SeeAppointments = (props) => {
 const mapStateToProps = (state) => {
   return {
     userID: state.id,
+    token: state.token,
   };
 };
 

@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import Button from "../../UI/Button/Button";
 import Modal from "../../UI/Modal/Modal";
 import Form from "../Form/Form";
+import * as actionTypes from "../../store/actions";
+import * as messageTypes from "../../messageTypes";
 
 import image from "../../assets/images/companyLogo1.png";
 
@@ -37,10 +39,15 @@ const Profile = (props) => {
   };
 
   useEffect(() => {
-    //TODO: Change ID
-    console.log(props.userID);
     axios
-      .get("http://" + process.env.hostname + "/getUser/" + props.userID)
+      .get(
+        "http://" + messageTypes.CURRENT_ROUTE + "/getUser/" + props.userID,
+        {
+          headers: {
+            Authorization: "Bearer " + props.token,
+          },
+        }
+      )
       .then((response) => {
         setProfileData({
           name: response.data.name,
@@ -48,8 +55,52 @@ const Profile = (props) => {
           phone: response.data.phone,
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        props.setMessage(
+          "Error al obtener los datos de tu perfil",
+          messageTypes.MESSAGE_TYPE_ERROR
+        );
+      });
   }, []);
+
+  const updateUser = (userData) => {
+    if (userData["Contraseña"] !== userData["Confirmar Contraseña"]) {
+      props.setMessage(
+        "Las contraseñas no coinciden",
+        messageTypes.MESSAGE_TYPE_ERROR
+      );
+      return;
+    }
+
+    const data = {
+      id: props.userID,
+      name: userData["Nombre"] || null,
+      mail: userData["Correo Electrónico"] || null,
+      phone: userData["Teléfono"] || null,
+      password: userData["Contraseña"] || null,
+    };
+
+    axios
+      .post("http://" + messageTypes.CURRENT_ROUTE + "/updateUser/", data, {
+        headers: {
+          Authorization: "Bearer " + props.token,
+        },
+      })
+      .then((response) => {
+        props.setMessage(
+          "Perfil actualizado correctamente",
+          messageTypes.MESSAGE_TYPE_SUCCESS
+        );
+      })
+      .catch((err) => {
+        props.setMessage(
+          "No se pudo actualizar el perfil correctamente, intente más tarde",
+          messageTypes.MESSAGE_TYPE_ERROR
+        );
+      });
+
+    setShowModal(false);
+  };
 
   return (
     <div className="profileDiv">
@@ -58,8 +109,18 @@ const Profile = (props) => {
         closeModal={() => {
           setShowModal(false);
         }}
+        id="profileModal"
       >
-        <Form config={formConfig} />
+        <Form
+          config={formConfig}
+          formDivClassName="modalFormDiv"
+          formContentClassName="modalFormContent"
+          formClassName="modalForm"
+          onButtonClick={(data) => {
+            updateUser(data);
+          }}
+        />
+        <p>*Los datos que no sean llenados, no serán actualizados</p>
       </Modal>
       <h1 className="profileTitle">Tus Datos</h1>
       <div>
@@ -91,7 +152,19 @@ const Profile = (props) => {
 const mapStateToProps = (state) => {
   return {
     userID: state.id,
+    token: state.token,
   };
 };
 
-export default connect(mapStateToProps, null)(Profile);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setMessage: (message, messageType) => {
+      dispatch({
+        type: actionTypes.SET_MESSAGE,
+        payload: { message: message, messageType: messageType },
+      });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
