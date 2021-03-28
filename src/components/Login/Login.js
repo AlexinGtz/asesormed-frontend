@@ -10,6 +10,7 @@ import checkTimeout from "../../store/authAction";
 
 import "./Login.css";
 import * as actionTypes from "../../store/actions";
+import * as messageTypes from "../../messageTypes";
 
 const config = {
   title1: "Iniciar Sesión",
@@ -39,16 +40,25 @@ const Login = (props) => {
 
   const acceptTerms = () => {
     axios
-      .post("http://" + process.env.hostname + "/acceptTerms", {
+      .post("http://" + messageTypes.CURRENT_ROUTE + "/acceptTerms", {
         id: queryData.id,
       })
       .then((response) => {
         if (response.status !== 200) {
-          console.log("Error accepting terms");
+          props.setMessage(
+            "Error al aceptar los términos y condiciones",
+            messageTypes.MESSAGE_TYPE_ERROR
+          );
+          return;
         }
         finalLogin(queryData);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        props.setMessage(
+          "Error al iniciar sesión",
+          messageTypes.MESSAGE_TYPE_ERROR
+        );
+      });
   };
 
   const validateInputs = () => {
@@ -56,20 +66,17 @@ const Login = (props) => {
   };
 
   const onLoginClick = (data) => {
-    console.log(data);
-
     if (!validateInputs()) {
       return;
     }
 
     axios
-      .post("http://" + process.env.hostname + "/login", {
+      .post("http://" + messageTypes.CURRENT_ROUTE + "/login", {
         mail: data["Correo Electrónico"],
         password: data["Contraseña"],
       })
       .then((response) => {
         setQueryData(response.data);
-        console.log(response.data);
         if (response.data.acceptedTerms === 0) {
           setShowTerms(true);
         } else {
@@ -107,6 +114,12 @@ const mapDispatchToProps = (dispatch) => {
         type: actionTypes.LOGIN,
         payload: { id: id, token: token, userType: userType },
       }),
+    setMessage: (message, messageType) => {
+      dispatch({
+        type: actionTypes.SET_MESSAGE,
+        payload: { message: message, messageType: messageType },
+      });
+    },
     //checkTimeout: dispatch(checkTimeout),
   };
 };

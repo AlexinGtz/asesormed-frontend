@@ -39,7 +39,6 @@ const ConsultaXpress = (props) => {
           <Switch>
             <Route exact path="/addSeller" component={AddSeller} />
             <Route exact path="/reports" component={Reports} />
-            <Route exact path="/profile" component={Profile} />
             <Route exact path="/logout" component={Logout} />
             <Route exact path="/" component={HomeMenu} />
             <Redirect to="/" />
@@ -78,14 +77,8 @@ const ConsultaXpress = (props) => {
   return (
     <div className="consultaXpress">
       <Layout>
-        <MessageModal
-          show={props.showMessageModal}
-          messageType={props.messageType}
-          closeModal={props.closeModal}
-        >
-          {props.message}
-        </MessageModal>
         {routes}
+        <MessageModal closeModal={props.closeModal} />
       </Layout>
     </div>
   );
@@ -93,9 +86,6 @@ const ConsultaXpress = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    message: state.message,
-    showMessageModal: state.showMessageModal,
-    messageType: state.messageType,
     isAuthenticated: state.token !== null,
     userType: state.userType,
   };

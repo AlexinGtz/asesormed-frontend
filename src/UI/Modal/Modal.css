@@ -13,9 +13,35 @@
   border-radius: 5px;
 }
 
+#profileModal {
+  color: black;
+  height: 70%;
+  width: 20%;
+}
+
 @media (min-width: 600px) {
   .Modal {
     width: 60%;
     left: 20%;
+  }
+
+  #profileModal {
+    color: black;
+    height: 67%;
+    width: 65%;
+    left: 15%;
+    top: 15%;
+  }
+
+  .modalFormDiv {
+    height: 32.5em;
+  }
+
+  .modalFormContent {
+    height: 32em;
+  }
+
+  .modalForm {
+    margin-left: 10em;
   }
 }

@@ -6,7 +6,6 @@ router.get("/getProfile/:id", (req, res, next) => {
     request.get(
       `http:// ${process.env.hostname}/getUser/${req.params.id}`,
       (response) => {
-        console.log(response);
         resolve(response);
       }
     );

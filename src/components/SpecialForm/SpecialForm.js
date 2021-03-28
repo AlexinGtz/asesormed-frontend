@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 
 import Button from "../../UI/Button/Button";
 import Input from "../Input/Input";
+import * as actionTypes from "../../store/actions";
+import * as messageTypes from "../../messageTypes";
 
 import Validator from "../../Validator";
 
@@ -44,18 +46,33 @@ const SpecialForm = (props) => {
       patientName: name,
       patientPhone: phone,
       patientMail: mail,
-      doctorID: props.userID, //TODO: CHANGE ID
+      doctorID: props.userID,
       cost: cost,
     };
 
     axios
-      .post("http://" + process.env.hostname + "/createAppointment", formData)
+      .post(
+        "http://" + messageTypes.CURRENT_ROUTE + "/createAppointment",
+        formData,
+        {
+          headers: {
+            Authorization: "Bearer " + props.token,
+          },
+        }
+      )
       .then((result) => {
-        console.log(result);
+        props.setMessage(
+          "Cita añadida con Éxito",
+          messageTypes.MESSAGE_TYPE_SUCCESS
+        );
       })
-      .catch((err) => console.log(err));
-
-    console.log(formData);
+      .catch((err) => {
+        console.log(err);
+        props.setMessage(
+          "Hubo un error al añadir la cita",
+          messageTypes.MESSAGE_TYPE_ERROR
+        );
+      });
   };
 
   const checkValidation = () => {
@@ -80,7 +97,6 @@ const SpecialForm = (props) => {
       });
       validated = false;
     }
-    console.log(validClasses);
     if (!Validator.isMailValid(mail)) {
       setValidClasses((prevState) => {
         return {
@@ -228,7 +244,7 @@ const SpecialForm = (props) => {
                   className="specialFormTextarea"
                   rows="6"
                   maxLength="200"
-                  placeholder="Notas para el paciente"
+                  placeholder="Notas"
                   value={notes}
                   onChange={(event) => {
                     setNotes(event.target.value);
@@ -251,7 +267,19 @@ const SpecialForm = (props) => {
 const mapStateToProps = (state) => {
   return {
     userID: state.id,
+    token: state.token,
   };
 };
 
-export default connect(mapStateToProps, null)(SpecialForm);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setMessage: (message, messageType) => {
+      dispatch({
+        type: actionTypes.SET_MESSAGE,
+        payload: { message: message, messageType: messageType },
+      });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SpecialForm);

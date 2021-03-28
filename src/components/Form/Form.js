@@ -8,6 +8,18 @@ import "./Form.css";
 const Form = (props) => {
   const [formData, setFormData] = useState({});
 
+  const formClassName = props.formClassName
+    ? ["form", ...props.formClassName.split(" ")].join(" ")
+    : "form";
+
+  const formContentClassName = props.formContentClassName
+    ? ["formContent", ...props.formContentClassName.split(" ")].join(" ")
+    : "formContent";
+
+  const formDivClassName = props.formDivClassName
+    ? ["formDiv", ...props.formDivClassName.split(" ")].join(" ")
+    : "formDiv";
+
   const onSubmit = () => {
     if (!validateInputs()) return;
     else {
@@ -20,14 +32,14 @@ const Form = (props) => {
   };
 
   return (
-    <div className="formDiv">
+    <div className={formDivClassName}>
       <h1 className="formTitle">{props.config.title1}</h1>
       <div>
-        <div className="formContent">
+        <div className={formContentClassName}>
           <h2 className="formTitle">{props.config.title2}</h2>
 
           <form
-            className="form"
+            className={formClassName}
             onSubmit={(event) => {
               event.preventDefault();
               onSubmit();

@@ -5,7 +5,6 @@ import image1 from "../../assets/images/companyLogo1.png";
 
 const infoSection = (props) => {
   if (!["left", "right"].includes(props.alignment)) {
-    console.log(props);
     throw new Error("alignment prop is being wrongly defined");
   }
 

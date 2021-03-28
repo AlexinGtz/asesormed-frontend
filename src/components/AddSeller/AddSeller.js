@@ -1,9 +1,12 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
 
 import Form from "../Form/Form";
 
 import Utils from "../../Utils";
+import * as actionTypes from "../../store/actions";
+import * as messageTypes from "../../messageTypes";
 
 const config = {
   title1: "Nuevo Vendedor",
@@ -20,24 +23,36 @@ const config = {
 const addSeller = (props) => {
   const onAddSeller = (data) => {
     const password = Utils.generatePassword(15);
-    console.log(password);
 
     axios
-      .post("http://" + process.env.hostname + "/createUser", {
-        name: data["Nombre Completo"],
-        phone: data["Telefono"],
-        userType: 2,
-        sellerID: null,
-        account: data["CLABE interbancaria"],
-        acceptedTerms: 0,
-        password: password,
-        mail: data["Correo"],
-      })
+      .post(
+        "http://" + messageTypes.CURRENT_ROUTE + "/createUser",
+        {
+          name: data["Nombre Completo"],
+          phone: data["Telefono"],
+          userType: 2,
+          sellerID: null,
+          account: data["CLABE interbancaria"],
+          acceptedTerms: 0,
+          password: password,
+          mail: data["Correo"],
+        },
+        {
+          headers: {
+            Authorization: "Bearer " + props.token,
+          },
+        }
+      )
       .then((response) => {
-        console.log(response.data);
+        props.setMessage(
+          "Vendedor añadido exitosamente",
+          messageTypes.MESSAGE_TYPE_SUCCESS
+        );
         props.history.push("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        props.setMessage(err, messageTypes.MESSAGE_TYPE_ERROR);
+      });
   };
 
   return (
@@ -47,4 +62,20 @@ const addSeller = (props) => {
   );
 };
 
-export default addSeller;
+const mapStateToProps = (state) => {
+  return {
+    token: state.token,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setMessage: (message, messageType) =>
+      dispatch({
+        type: actionTypes.SET_MESSAGE,
+        payload: { message: message, messageType: messageType },
+      }),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(addSeller);

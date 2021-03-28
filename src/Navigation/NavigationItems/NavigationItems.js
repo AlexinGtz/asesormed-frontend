@@ -11,9 +11,10 @@ const navigationItems = (props) => {
   const LogOut = !props.isLoggedIn ? null : (
     <NavigationItem link="/logout">Salir</NavigationItem>
   );
-  const Profile = !props.isLoggedIn ? null : (
-    <NavigationItem link="/profile">Perfil</NavigationItem>
-  );
+  const Profile =
+    !props.isLoggedIn || props.userType === 0 ? null : (
+      <NavigationItem link="/profile">Perfil</NavigationItem>
+    );
   const AddSeller =
     props.isLoggedIn && props.userType === 0 ? (
       <NavigationItem link="/addSeller">Añadir Vendedor</NavigationItem>
