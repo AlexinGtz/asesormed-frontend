@@ -34,13 +34,15 @@ const SpecialForm = (props) => {
   const addAppointmentHandler = (event) => {
     event.preventDefault();
 
-    if (!checkValidation()) {
+    /*if (!checkValidation()) {
       return;
-    }
+    }*/
+
+    console.log(hour);
 
     const formData = {
       date: date,
-      hour: hour + ":00",
+      hour: hour ? hour + ":00" : "",
       summary: summary,
       notes: notes,
       patientName: name,
@@ -67,11 +69,8 @@ const SpecialForm = (props) => {
         );
       })
       .catch((err) => {
-        console.log(err);
-        props.setMessage(
-          "Hubo un error al añadir la cita",
-          messageTypes.MESSAGE_TYPE_ERROR
-        );
+        console.log(err.response.data);
+        props.setMessage(err.response.data, messageTypes.MESSAGE_TYPE_ERROR);
       });
   };
 
