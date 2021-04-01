@@ -54,12 +54,14 @@ const Terms = (props) => {
           ultrices mi quis nisl egestas varius.
         </p>
       </div>
-      <Button onClick={props.onCancel} className="termsButton">
-        Cancelar
-      </Button>
-      <Button onClick={props.onClick} className="termsButton">
-        Aceptar Terminos
-      </Button>
+      <div className="termsButtons">
+        <Button onClick={props.onCancel} className="termsButton">
+          Cancelar
+        </Button>
+        <Button onClick={props.onClick} className="termsButton">
+          Aceptar
+        </Button>
+      </div>
     </div>
   );
 };

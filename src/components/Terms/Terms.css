@@ -5,7 +5,11 @@
 }
 
 .termsButton {
-  margin-left: 3em;
+  width: 13vw;
+}
+
+.termsButtons {
+  padding: 0 12em;
 }
 
 .termsParagraph {
