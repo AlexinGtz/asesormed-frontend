@@ -54,6 +54,7 @@ const reducer = (state = initialState, action) => {
       };
     case actionTypes.CLOSE_MAIN_MODAL:
       return {
+        ...state,
         showMessageModal: false,
       };
     default:

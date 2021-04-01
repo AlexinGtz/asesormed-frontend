@@ -83,7 +83,10 @@ const Login = (props) => {
           finalLogin(response.data);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        props.setMessage(err.response.data, messageTypes.MESSAGE_TYPE_ERROR);
+      });
   };
 
   return (

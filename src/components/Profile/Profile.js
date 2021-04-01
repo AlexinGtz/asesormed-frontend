@@ -64,7 +64,10 @@ const Profile = (props) => {
   }, []);
 
   const updateUser = (userData) => {
-    if (userData["Contraseña"] !== userData["Confirmar Contraseña"]) {
+    if (
+      userData["Contraseña"] !== userData["Confirmar Contraseña"] ||
+      userData["Contraseña"] === ""
+    ) {
       props.setMessage(
         "Las contraseñas no coinciden",
         messageTypes.MESSAGE_TYPE_ERROR
