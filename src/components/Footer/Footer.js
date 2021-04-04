@@ -6,7 +6,7 @@ import image from "../../assets/images/companyLogo2.png";
 const footer = (props) => {
   return (
     <div className="Footer">
-      <span className="creado">
+      <p className="creado">
         Desarrollada por{" "}
         <a
           href="https://www.linkedin.com/in/jalexg/"
@@ -15,7 +15,7 @@ const footer = (props) => {
         >
           Alejandro Gutierrez
         </a>
-      </span>
+      </p>
       <div className="contacto">
         <div className="contactInfo">
           <div>
