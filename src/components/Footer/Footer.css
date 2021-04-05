@@ -8,10 +8,9 @@
 
 .creado {
   flex: 1;
-  vertical-align: bottom;
   padding-left: 5px;
   font-size: smaller;
-  vertical-align: bottom;
+  margin: 3% 0 0 0;
 }
 
 .contacto {

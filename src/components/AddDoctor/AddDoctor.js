@@ -26,6 +26,7 @@ const AddDoctor = (props) => {
   const onAddDoctor = (data) => {
     const password = Utils.generatePassword(15);
     console.log("CREATING USER");
+    props.setLoading(true);
     axios
       .post(
         "http://" + messageTypes.CURRENT_ROUTE + "/createUser",
@@ -46,6 +47,7 @@ const AddDoctor = (props) => {
         }
       )
       .then((response) => {
+        props.setLoading(false);
         props.setMessage(
           "Doctor añadido exitosamente",
           messageTypes.MESSAGE_TYPE_SUCCESS
@@ -77,6 +79,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: actionTypes.SET_MESSAGE,
         payload: { message: message, messageType: messageType },
+      });
+    },
+    setLoading: (isLoading) => {
+      dispatch({
+        type: actionTypes.SET_LOADING,
+        payload: { loading: isLoading },
       });
     },
   };

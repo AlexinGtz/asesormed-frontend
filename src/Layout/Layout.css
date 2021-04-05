@@ -1,3 +1,8 @@
 .Content {
   margin-top: 72px;
+  background-color: #999999;
+  background-image: url("../assets/images/background.png");
+  background-size: contain;
+  background-position-y: center;
+  background-repeat: no-repeat;
 }

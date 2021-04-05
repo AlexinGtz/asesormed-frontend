@@ -5,6 +5,7 @@ import Appointment from "../Appointment/Appointment";
 import Modal from "../../UI/Modal/Modal";
 import ModalAppointment from "../ModalAppointment/ModalAppointment";
 import * as messageTypes from "../../messageTypes";
+import * as actionTypes from "../../store/actions";
 
 import "./SeeAppointments.css";
 import axios from "axios";
@@ -15,6 +16,7 @@ const SeeAppointments = (props) => {
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
+    props.setLoading(true);
     axios
       .get(
         "http://" +
@@ -28,6 +30,7 @@ const SeeAppointments = (props) => {
         }
       )
       .then((response) => {
+        props.setLoading(false);
         setAppointments(response.data);
       })
       .catch((err) => console.log(err));
@@ -76,4 +79,14 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, null)(SeeAppointments);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setLoading: (isLoading) => {
+      dispatch({
+        type: actionTypes.SET_LOADING,
+        payload: { loading: isLoading },
+      });
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(SeeAppointments);

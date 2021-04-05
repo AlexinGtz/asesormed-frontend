@@ -1,12 +1,13 @@
 import React from "react";
 
 import "./Footer.css";
-import image from "../../assets/images/companyLogo2.png";
+import correo from "../../assets/images/Correo.png";
+import tel from "../../assets/images/Telefono.png";
 
 const footer = (props) => {
   return (
     <div className="Footer">
-      <span className="creado">
+      <p className="creado">
         Desarrollada por{" "}
         <a
           href="https://www.linkedin.com/in/jalexg/"
@@ -15,20 +16,20 @@ const footer = (props) => {
         >
           Alejandro Gutierrez
         </a>
-      </span>
+      </p>
       <div className="contacto">
         <div className="contactInfo">
           <div>
             <span className="contactText">Contacto:</span>
           </div>
           <div>
-            <img src={image} className="contactImage" />
+            <img src={correo} className="contactImage" />
             <span className="contactText">
               consultaxpress.soporte@gmail.com
             </span>
           </div>
           <div>
-            <img src={image} className="contactImage" />
+            <img src={tel} className="contactImage" />
             <span className="contactText">3312125656</span>
           </div>
         </div>

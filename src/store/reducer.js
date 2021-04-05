@@ -10,6 +10,7 @@ const initialState = {
   message: "",
   messageType: 0,
   showMessageModal: false,
+  loading: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -56,6 +57,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         showMessageModal: false,
+      };
+    case actionTypes.SET_LOADING:
+      return {
+        ...state,
+        loading: action.payload.loading,
       };
     default:
       return state;
