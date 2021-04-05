@@ -35,10 +35,12 @@ const Login = (props) => {
     localStorage.setItem("expirationDate", expirationDate);
     localStorage.setItem("userId", data.id);
     localStorage.setItem("userType", data.userType);
+    props.setLoading(false);
     props.history.push("/");
   };
 
   const acceptTerms = () => {
+    props.setLoading(true);
     axios
       .post("http://" + messageTypes.CURRENT_ROUTE + "/acceptTerms", {
         id: queryData.id,
@@ -70,6 +72,8 @@ const Login = (props) => {
       return;
     }
 
+    props.setLoading(true);
+
     axios
       .post("http://" + messageTypes.CURRENT_ROUTE + "/login", {
         mail: data["Correo Electrónico"],
@@ -78,6 +82,7 @@ const Login = (props) => {
       .then((response) => {
         setQueryData(response.data);
         if (response.data.acceptedTerms === 0) {
+          props.setLoading(false);
           setShowTerms(true);
         } else {
           finalLogin(response.data);
@@ -121,6 +126,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: actionTypes.SET_MESSAGE,
         payload: { message: message, messageType: messageType },
+      });
+    },
+    setLoading: (isLoading) => {
+      dispatch({
+        type: actionTypes.SET_LOADING,
+        payload: { loading: isLoading },
       });
     },
     //checkTimeout: dispatch(checkTimeout),
