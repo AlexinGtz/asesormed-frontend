@@ -11,12 +11,14 @@ import AddAppointment from "../../components/AddAppointment/AddAppointment";
 import AddDoctor from "../../components/AddDoctor/AddDoctor";
 import SeeAppointments from "../../components/SeeAppointments/SeeAppointments";
 import Profile from "../../components/Profile/Profile";
-import Reports from "../../components/Reports/Reports";
+import AdminReports from "../../components/Reports/AdminReports/AdminReports";
+import SellerReports from "../../components/Reports/SellerReports/SellerReports";
 import Login from "../../components/Login/Login";
 import Checkout from "../../components/Checkout/Checkout";
 import Logout from "../../components/Logout/Logout";
 import checkTimeout from "../../store/authAction";
 import MessageModal from "../../UI/MessageModal/MessageModal";
+import Spinner from "../../UI/Spinner/Spinner";
 
 const ConsultaXpress = (props) => {
   useEffect(() => {
@@ -38,7 +40,7 @@ const ConsultaXpress = (props) => {
         routes = (
           <Switch>
             <Route exact path="/addSeller" component={AddSeller} />
-            <Route exact path="/reports" component={Reports} />
+            <Route exact path="/reports" component={AdminReports} />
             <Route exact path="/logout" component={Logout} />
             <Route exact path="/" component={HomeMenu} />
             <Redirect to="/" />
@@ -61,6 +63,7 @@ const ConsultaXpress = (props) => {
         routes = (
           <Switch>
             <Route exact path="/addDoctor" component={AddDoctor} />
+            <Route exact path="/reports" component={SellerReports} />
             <Route exact path="/profile" component={Profile} />
             <Route exact path="/logout" component={Logout} />
             <Route exact path="/" component={HomeMenu} />
@@ -74,10 +77,13 @@ const ConsultaXpress = (props) => {
     }
   }
 
+  const spinner = props.loading ? <Spinner /> : null;
+
   return (
     <div className="consultaXpress">
       <Layout>
         {routes}
+        {spinner}
         <MessageModal closeModal={props.closeModal} />
       </Layout>
     </div>
@@ -88,6 +94,7 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.token !== null,
     userType: state.userType,
+    loading: state.loading,
   };
 };
 

@@ -2,15 +2,16 @@ import axios from "axios";
 import React, { useState } from "react";
 import { connect } from "react-redux";
 
-import Button from "../../UI/Button/Button";
-import Report from "../Report/Report";
-import Input from "../Input/Input";
-import * as messageTypes from "../../messageTypes";
-import "./Reports.css";
+import Button from "../../../UI/Button/Button";
+import SellerReport from "../SellerReport/SellerReport";
+import Input from "../../Input/Input";
+import * as messageTypes from "../../../messageTypes";
+import * as actionTypes from "../../../store/actions";
+import "./SellerReports.css";
 
 //TODO: Checar que pedo con las fechas
 
-const Reports = (props) => {
+const SellerReports = (props) => {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [reportsArray, setReportsArray] = useState([]);
@@ -18,13 +19,14 @@ const Reports = (props) => {
 
   const onGenerateReports = (event) => {
     event.preventDefault();
-
+    props.setLoading(true);
     axios
       .post(
-        "http://" + messageTypes.CURRENT_ROUTE + "/getReport",
+        "http://" + messageTypes.CURRENT_ROUTE + "/getSellerReport",
         {
           startDate: startDate,
           endDate: endDate,
+          id: props.userID,
         },
         {
           headers: {
@@ -33,6 +35,7 @@ const Reports = (props) => {
         }
       )
       .then((result) => {
+        props.setLoading(false);
         setReportsArray(result.data);
       })
       .catch((err) => console.log(err));
@@ -41,23 +44,22 @@ const Reports = (props) => {
   let reports = null;
   if (reportsArray) {
     reports = reportsArray.map((report) => (
-      <Report
+      <SellerReport
         key={report.id}
         name={report.nombre.split(" ")[0]}
-        account={report.cuenta}
-        amount={report.total}
+        amount={report.citas}
       />
     ));
   }
-  //TODO: Arreglar el bot'on centrado
+
   return (
     <div>
-      <div className="reportsContent">
+      <div className="sellerReportsContent">
         <form onSubmit={(event) => onGenerateReports(event)}>
-          <div className="reportsDates">
+          <div className="sellerReportsDates">
             <Input
               type="date"
-              className="reportInput"
+              className="sellerReportInput"
               value={startDate}
               valid={+true}
               onChange={(event) => {
@@ -66,7 +68,7 @@ const Reports = (props) => {
             />
             <Input
               type="date"
-              className="reportInput"
+              className="sellerReportInput"
               value={endDate}
               valid={+true}
               onChange={(event) => {
@@ -74,13 +76,13 @@ const Reports = (props) => {
               }}
             />
           </div>
-          <div className="reportsButton">
-            <Button className="reportsButton" type="submit">
+          <div className="sellerReportsButton">
+            <Button className="sellerReportsButton" type="submit">
               Generar Reporte
             </Button>
           </div>
         </form>
-        <div className="reportsReports">{reports}</div>
+        <div className="sellerReportsReports">{reports}</div>
       </div>
     </div>
   );
@@ -89,7 +91,19 @@ const Reports = (props) => {
 const mapStateToProps = (state) => {
   return {
     token: state.token,
+    userID: state.id,
   };
 };
 
-export default connect(mapStateToProps, null)(Reports);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setLoading: (isLoading) => {
+      dispatch({
+        type: actionTypes.SET_LOADING,
+        payload: { loading: isLoading },
+      });
+    },
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SellerReports);

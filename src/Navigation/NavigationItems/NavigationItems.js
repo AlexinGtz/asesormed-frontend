@@ -20,7 +20,7 @@ const navigationItems = (props) => {
       <NavigationItem link="/addSeller">Añadir Vendedor</NavigationItem>
     ) : null;
   const Reports =
-    props.isLoggedIn && props.userType === 0 ? (
+    props.isLoggedIn && (props.userType === 0 || props.userType === 2) ? (
       <NavigationItem link="/reports">Reportes</NavigationItem>
     ) : null;
   const AddDoctor =
@@ -40,8 +40,8 @@ const navigationItems = (props) => {
     <ul className="NavigationItems">
       {LogIn}
       {AddSeller}
-      {Reports}
       {AddDoctor}
+      {Reports}
       {AddAppointment}
       {SeeAppointments}
       {Profile}

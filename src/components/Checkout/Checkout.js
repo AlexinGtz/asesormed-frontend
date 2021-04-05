@@ -17,7 +17,6 @@ const Checkout = (props) => {
   });
 
   useEffect(() => {
-    console.log(id, "IDDDDD");
     axios
       .get("http://" + messageTypes.CURRENT_ROUTE + "/getAppointment/" + id)
       .then((response) => {

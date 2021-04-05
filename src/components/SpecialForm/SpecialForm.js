@@ -52,6 +52,8 @@ const SpecialForm = (props) => {
       cost: cost,
     };
 
+    props.setLoading(true);
+
     axios
       .post(
         "http://" + messageTypes.CURRENT_ROUTE + "/createAppointment",
@@ -63,6 +65,7 @@ const SpecialForm = (props) => {
         }
       )
       .then((result) => {
+        props.setLoading(false);
         props.setMessage(
           "Cita añadida con Éxito",
           messageTypes.MESSAGE_TYPE_SUCCESS
@@ -276,6 +279,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: actionTypes.SET_MESSAGE,
         payload: { message: message, messageType: messageType },
+      });
+    },
+    setLoading: (isLoading) => {
+      dispatch({
+        type: actionTypes.SET_LOADING,
+        payload: { loading: isLoading },
       });
     },
   };

@@ -23,7 +23,7 @@ const config = {
 const addSeller = (props) => {
   const onAddSeller = (data) => {
     const password = Utils.generatePassword(15);
-
+    props.setLoading(true);
     axios
       .post(
         "http://" + messageTypes.CURRENT_ROUTE + "/createUser",
@@ -44,6 +44,7 @@ const addSeller = (props) => {
         }
       )
       .then((response) => {
+        props.setLoading(false);
         props.setMessage(
           "Vendedor añadido exitosamente",
           messageTypes.MESSAGE_TYPE_SUCCESS
@@ -75,6 +76,12 @@ const mapDispatchToProps = (dispatch) => {
         type: actionTypes.SET_MESSAGE,
         payload: { message: message, messageType: messageType },
       }),
+    setLoading: (isLoading) => {
+      dispatch({
+        type: actionTypes.SET_LOADING,
+        payload: { loading: isLoading },
+      });
+    },
   };
 };
 

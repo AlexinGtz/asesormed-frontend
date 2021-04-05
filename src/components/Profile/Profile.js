@@ -7,7 +7,8 @@ import Form from "../Form/Form";
 import * as actionTypes from "../../store/actions";
 import * as messageTypes from "../../messageTypes";
 
-import image from "../../assets/images/companyLogo1.png";
+import tel from "../../assets/images/Telefono.png";
+import correo from "../../assets/images/Correo.png";
 
 import "./Profile.css";
 import axios from "axios";
@@ -39,6 +40,7 @@ const Profile = (props) => {
   };
 
   useEffect(() => {
+    props.setLoading(true);
     axios
       .get(
         "http://" + messageTypes.CURRENT_ROUTE + "/getUser/" + props.userID,
@@ -54,6 +56,7 @@ const Profile = (props) => {
           mail: response.data.mail,
           phone: response.data.phone,
         });
+        props.setLoading(false);
       })
       .catch((err) => {
         props.setMessage(
@@ -130,11 +133,11 @@ const Profile = (props) => {
         <div className="profileContent">
           <h2 className="profileTitle">{profileData.name}</h2>
           <div className="profileData">
-            <img src={image} className="profileImage" />
+            <img src={tel} className="profileImage" />
             <h3 className="profileText">{profileData.mail}</h3>
           </div>
           <div className="profileData">
-            <img src={image} className="profileImage" />
+            <img src={correo} className="profileImage" />
             <h3 className="profileText">
               {profileData.phone.substr(0, 2) +
                 "-" +
@@ -165,6 +168,12 @@ const mapDispatchToProps = (dispatch) => {
       dispatch({
         type: actionTypes.SET_MESSAGE,
         payload: { message: message, messageType: messageType },
+      });
+    },
+    setLoading: (isLoading) => {
+      dispatch({
+        type: actionTypes.SET_LOADING,
+        payload: { loading: isLoading },
       });
     },
   };

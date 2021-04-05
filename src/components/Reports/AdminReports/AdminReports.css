@@ -1,0 +1,66 @@
+.adminReportsContent {
+  background-color: rgba(204, 204, 204, 0.5);
+  align-items: center;
+  width: 100%;
+  height: 35rem;
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5em;
+  color: black;
+}
+
+.adminReportsDates {
+  margin: 1em;
+  display: inline;
+}
+
+.adminReportInput {
+  margin: 1em;
+  width: 10em;
+}
+
+.adminReportsButton {
+  width: 10rem;
+  font-size: large;
+  margin-top: 0;
+  margin-left: 3.5em;
+}
+
+.adminReportsReports {
+  overflow-y: scroll;
+  width: 100%;
+  height: 20em;
+}
+
+@media (min-width: 40rem) {
+  .adminReportsContent {
+    margin: auto;
+    width: 35rem;
+    height: 38.5em;
+    margin-bottom: 11rem;
+    padding: 0 7rem;
+    border-radius: 15px;
+  }
+}
+
+/* width */
+.adminReportsReports::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+.adminReportsReports::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 15px;
+}
+
+/* Handle */
+.adminReportsReports::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 15px;
+}
+
+/* Handle on hover */
+.adminReportsReports::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
