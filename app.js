@@ -1,5 +1,6 @@
 require("dotenv").config();
 
+const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 //const session = require("express-session");
@@ -11,14 +12,13 @@ const app = express();
 
 app.enable("trust proxy");
 
-app.use("/static", express.static("build/static"));
+app.use(express.static(path.join(__dirname, "build")));
 app.use(bodyParser.json());
 
 app.use("/api", require("./src/routes/api")); //ensureAuthenticated,
 
-app.all("*", (req, res) => {
-  //ensureAuthenticated,
-  res.sendFile("build/index.html", { root: __dirname });
+app.get("/*", function (req, res) {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 app.listen(port, () => {
